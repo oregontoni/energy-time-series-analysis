@@ -18,5 +18,6 @@ dependencies:
   - matplotlib
   - plotly
   - seaborn
-  - prophet
+  - streamlit
+  - joblib
   - conda-lock
