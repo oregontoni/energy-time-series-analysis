@@ -2,4 +2,4 @@ pandas
 matplotlib
 plotly
 streamlit
-joblib
+joblib==1.2.0
