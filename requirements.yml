@@ -1,0 +1,22 @@
+# conda-lock -f requirements.yml #>>updates requirements list
+# conda-lock install -n capstonetc --file conda-lock.yml
+# conda env update -f requirements.yml
+# conda env export --no-builds --from-history | grep -v "prefix" > requirements.yml 
+#manually update for new pkgs in command line
+name: capstonetc
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - jupyterlab
+  - jupyter
+  - scikit-learn
+  - scipy
+  - statsmodels
+  - matplotlib
+  - plotly
+  - seaborn
+  - prophet
+  - conda-lock
