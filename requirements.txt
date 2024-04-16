@@ -2,5 +2,5 @@ pandas
 matplotlib
 plotly
 streamlit
-statsmodels
+statsmodels==0.14.0
 joblib==1.2.0
