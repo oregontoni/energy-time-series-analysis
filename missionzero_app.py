@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objs as go
 import streamlit as st
 import joblib
+import statsmodels
 
 st.title("MISSION ZERO") 
 
