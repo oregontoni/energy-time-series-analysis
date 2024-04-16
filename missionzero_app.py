@@ -81,3 +81,7 @@ fig.show()
 #display doughnut chart in Streamlit
 st.plotly_chart(fig)
 
+##########################################################################################
+qr_code_path = 'tonic_linkedin_qrc.png'
+
+st.image(qr_code_path, caption='Connect w/Toni')
