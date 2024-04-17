@@ -106,21 +106,20 @@ w_mwh_year = 219000 #50 turbines * 4380MWh/yr per turbine
 
 w_total_opex = w_strike_price * selected_yr_forecasted_mwh 
 w_total_capex = (years_into_the_future/w_years_to_build)* cost_wind_farm
-w_total_cost = (w_total_opex + w_total_capex)/1000000000
 w_total_farms = selected_yr_forecasted_mwh/w_mwh_year
+w_total_cost = ((w_total_capex * w_total_farms) + w_total_opex)/1000000000
 
 
 
 s_strike_price = 61 #per MWh
 s_years_to_build = 1
 s_mwh_year = 42 #20MW farm * 2.1 MWH/year/MW
-cost_solar_farm = 0.98 #mil GBP per 20MW farm
+cost_solar_farm = 1.98 #mil GBP per 20MW farm
 
 s_total_opex = s_strike_price * s_mwh_year 
 s_total_capex = (years_into_the_future/s_years_to_build)* cost_solar_farm
-s_total_cost = (s_total_opex + s_total_capex)/100
 s_total_farms = selected_yr_forecasted_mwh/s_mwh_year
-
+s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000
 
 
 n_strike_price = 87 #per MWh
@@ -131,7 +130,7 @@ n_total_plant = selected_yr_forecasted_mwh/n_mwh_year
 
 n_total_opex = n_strike_price * n_mwh_year 
 n_total_capex = (years_into_the_future/n_years_to_build)* cost_nuclear_plant
-n_total_cost = (n_total_opex + n_total_capex)/10000000
+n_total_cost = ((n_total_capex * n_total_plant) + n_total_opex)/10000000
 
 #wind equivalent
 wind_turbine = Image.open('wind_turbine_black.jpeg')
@@ -140,7 +139,7 @@ col1, col2, col3 = st.columns([1,8,2])
 with col1:
     st.image(wind_turbine, width=100)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(w_total_cost,0))}</span> billion | <span style='font-weight: bold;'>{int(round(w_total_farms,0))}</span> wind farms</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(w_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(w_total_farms,0))}</span> wind farms</div>", unsafe_allow_html=True)
 
 
 st.markdown(f"This amount of Wind energy generation equates to:", unsafe_allow_html=True)
@@ -161,4 +160,4 @@ col1, col2, col3 = st.columns([1,8,1])
 with col1:
     st.image(nuclear, width=100)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(n_total_cost,0))}</span> billion | <span style='font-weight: bold;'>{int(round(n_total_plant,0))}</span> nuclear plants</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(n_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(n_total_plant,0))}</span> nuclear plants</div>", unsafe_allow_html=True)
