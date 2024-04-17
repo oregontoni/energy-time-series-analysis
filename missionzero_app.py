@@ -5,7 +5,6 @@ import streamlit as st
 import joblib
 import statsmodels
 
-st.title("MISSION ZERO") 
 
 st.markdown("<h1 style='text-align: center; color: green; font-style: italic; margin-bottom: 30px'>UK Net Zero 2050: Will there be enough renewable energy?</h1>", unsafe_allow_html=True)
 
@@ -16,7 +15,7 @@ st.markdown("<h2 style='text-align: center;  font-size: 16px; margin-bottom: 30p
 #model calculations
 model = joblib.load('wind_generation_SARIMA_model.pkl')
 
-year_to_forecast = st.selectbox('Select a year to forecast:', range(2024, 2050))
+year_to_forecast = st.sidebar.selectbox('Select a year to forecast:', range(2024, 2050))
 
 #calculate steps for model to forecast from 2023 onwards
 #X3_w_test starts May 2020
@@ -73,7 +72,7 @@ fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span
                             dict(text=f'Wind OpEx <br>', x=0.5, y=0.62, font=dict(size=22, color='black'), showarrow=False), 
                             dict(text=f'<b>£{round(total_cost_bil,0)} bil<b> <br>', x=0.5, y=0.5, font=dict(size=45, color='black'), showarrow=False), 
                             dict(text=f'{round(selected_yr_forecasted_twh,0)} TWh', x=0.5, y=0.38, font=dict(size=30, color='black'), showarrow=False, 
-                            textangle=0, align='center')], width=850, height=850,
+                            textangle=0, align='center')], width=750, height=750,
                             margin=dict(t=125, b=75, l=0, r=0))
 
 fig.update_traces(textfont=dict(size=16))

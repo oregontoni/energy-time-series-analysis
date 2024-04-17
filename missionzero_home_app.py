@@ -7,7 +7,7 @@ from st_pages import Page, show_pages, add_page_title
 #numbers[#rows, #col, size]
 logo = Image.open('netzerouk.png')
 
-st.image(logo, width= 1000, use_column_width='True')
+st.image(logo, width= 800, use_column_width='True')
 
 st.markdown("<h1 style='color:green;'>MISSION ZERO<h1/>", unsafe_allow_html=True)
 
@@ -30,7 +30,7 @@ and energy mix in 2050 (ie, the year the UK is legally bound to have reached Net
 In 2019, the UK became the first country in the world to legally bind itself to a Net Zero target: by 2050, the UK would 
 no longer add more greenhouse gases to the atmosphere than it removes.
 
-At the end of 2023, fossil fuels made up one-third of the UK's energy mix. 
+At the end of 2023, fossil fuels were 1/3 of the UK's energy mix. 
 
 What is the UK's current renewable energy generation capacity, and how can the UK government plan capacity growth of 
 the various renewable energy sources in order to achieve NetZero while meeting energy demands?
@@ -38,15 +38,22 @@ the various renewable energy sources in order to achieve NetZero while meeting e
 Energy generated is an inherent reflection of energy demand. When the demand for electricity is greater than the base load 
 (ie, the minimum amount of energy needed to be supplied to the grid at any given point in time), 
 the National Grid reacts by providing additional electricity. National Grid ESO's data portal includes historic energy generation from 2009 to 2024, 
-with data recorded in half-hour increments. I have used the energy generation dataset as a reflection of energy use in the UK for 
-statistical modelling to predict future energy output. 
+with data recorded in half-hour increments. 
 
 Forecasting models can map current energy production capacities and extrapolate to the future energy production capacities required in 2050. 
-Through time series modelling, the historical data can be aggregated and summarised into actionable insights (eg, taking the current annual production of 
+Through time series analysis, the historical data can be aggregated and summarised into actionable insights (eg, taking the current annual production of 
 wind energy, forecasting the total estimated wind energy production in 2050, and using that number to calculate total required windfarm construction 
 requirements over the next three decades).
 
-Ultimately, these insights can become the tools for policy makers to make decisions on how the UK can balance energy generation growth to fulfil its Net Zero obligations. 
+Given the energy generation dataset is a reflection of energy demand in the UK, I used several forecasting models to conduct time series analysis and predict future values of energy output:
+
+- Linear Regression
+
+- XGBoost
+
+- SARIMA and SARIMAX
+
+Ultimately, insights from forecasting models can become the tools for policy makers to make decisions on how the UK can balance energy generation growth to fulfil its Net Zero obligations. 
 
 """
 )
