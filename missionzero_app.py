@@ -16,8 +16,8 @@ st.markdown("<h1 style='color:green;'>MISSION ZERO<h1/>", unsafe_allow_html=True
 # and icons should be
 show_pages(
     [
-        Page("missionzero_home_app.py", "Introduction", "🇬🇧"),
-        Page("missionzero_app.py", "UK Net Zero 2050", "🌏"),
+        Page("missionzero_app.py", "Introduction", "🇬🇧"),
+        Page("missionzero_fcast_app.py", "UK Net Zero 2050", "🌏"),
         Page("missionzero_btm_app.py", "Connecting", "🔗")
     ]
 )
