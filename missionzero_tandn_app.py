@@ -12,29 +12,36 @@ col1, mid, col2 = st.columns([1,1,20])
 with col1:
     st.image(chart_logo, width=80)
 with col2:
-    st.markdown("<h1 style='text-align: left; font-size: 30px; color: green; font-style: italic; margin-bottom: 30px; whitespace: nowrap'>Before forecasting.....what are the trends?</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: left; font-size: 34px; color: green; font-style: italic; margin-bottom: 30px; whitespace: nowrap'>Before forecasting.....what are the trends?</h1>", unsafe_allow_html=True)
 
-st.markdown("<h2 style='text-align: left; font-size: 16px; color: black; margin-bottom: 1px; whitespace: nowrap'>Micro trends: monthly</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey;'>The monthly averages--the red horizontal lines--show a seasonal energy generation pattern through the years. The highest points are in winter and the lowest points are in summer.
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>Micro trends: monthly</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>The monthly averages--the red horizontal lines--show a seasonal energy generation pattern through the years. The highest points are in winter and the lowest points are in summer.
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_month, width=700)
 
-st.markdown("<h2 style='text-align: left; font-size: 16px; color: black; margin-bottom: 1px; whitespace: nowrap'>Macro trends: all 15 years of data</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>Macro trends: all 15 years of data</h2>", unsafe_allow_html=True)
 st.markdown("""<p style='color: grey;'>There is a general downward trend in energy generation over the 15 years. Coal has declined to almost zero during the UK's transition away from fossil fuels.
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_over_time, width=700)
 
-st.markdown("<h2 style='text-align: left; font-size: 16px; color: black; margin-bottom: 1px; whitespace: nowrap'>How will the general downward trend in energy generation translate into forecast modelling.........?</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>How will the general downward trend in energy generation translate into forecast modelling.........?</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>The downward trend in energy generation has presented a limitation to the model's ability to accurately forecast future values.
+</p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_neg_gen, width=700)
 
-st.markdown("<h2 style='text-align: left; font-size: 16px; color: black; margin-bottom: 1px; whitespace: nowrap'>..............will the UK realistically be generating negative levels of energy in 2050?</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey;'>Although there was an overall downward slope the historical trends graph, not all energy sources have declined in total energy output since 2009. In contrast to declining Coal energy generation, Wind energy generation has grown exponentially.
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>..............will the UK realistically be generating negative levels of energy in 2050?</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>Although there was an overall downward slope the historical trends graph, not all energy sources have declined in total energy output since 2009. In contrast to declining Coal energy generation, Wind energy generation has grown exponentially.
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_comparison, width=700)
+
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>Is Wind the future of UK renewable energy?</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>The Climate Change Committee (an independent, non-departmental public body, formed under the Climate Change Act to advice the UK) estimates UK energy demand in 2050 will be approximately <span style='font-weight:bold;'>610 TWh</span>. Click to the next page to compare the model's forecasted Wind output with this estimate.
+</p>""", unsafe_allow_html=True)
+
 
 #with st.sidebar.container():
 #    turbine = Image.open('wind_tbin_drwg.png')
