@@ -4,12 +4,18 @@ import plotly.graph_objs as go
 import streamlit as st
 import joblib
 import statsmodels
+from PIL import Image, ImageOps
 
+col1, mid, col2 = st.columns([1,1,20])
+turbine=Image.open('green_wind.png')
 
-st.markdown("<h1 style='text-align: center; color: green; font-style: italic; margin-bottom: 30px; whitespace: nowrap'>Will there be enough energy?</h1>", unsafe_allow_html=True)
+with col1:
+       st.image(turbine, width=75)
+with col2:
+        st.markdown("<h1 style='text-align: center; color: green; font-size: 38px; font-style: italic; margin-bottom: 30px; whitespace: nowrap'>Will there be enough (Wind) energy?</h1>", unsafe_allow_html=True)
 
 #write a subheader     
-st.markdown("<h2 style='text-align: center;  font-size: 16px; margin-bottom: 30px'>Time Series Analysis on National Grid ESO Generation Data (2009 - 2024)</h2>", unsafe_allow_html=True)
+#st.markdown("<h2 style='text-align: center;  font-size: 16px; margin-bottom: 30px'>Time Series Analysis on National Grid ESO Generation Data (2009 - 2024)</h2>", unsafe_allow_html=True)
 
 #######################################################################################
 #model calculations

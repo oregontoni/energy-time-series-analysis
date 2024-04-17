@@ -17,9 +17,10 @@ st.markdown("<h1 style='color:green;'>MISSION ZERO<h1/>", unsafe_allow_html=True
 show_pages(
     [
         Page("missionzero_app.py", "Introduction", "🇬🇧"),
+        Page("missionzero_tandn_app.py", "Then & Now", "⌛"),
         Page("missionzero_fcast_app.py", "UK Net Zero 2050", "🌏"),
         Page("missionzero_btm_app.py", "Connecting", "🔗")
-        Page("missionzero_tandn_app.py", "⌛")
+        
     ]
 )
 
@@ -33,8 +34,14 @@ no longer add more greenhouse gases to the atmosphere than it removes.
 
 At the end of 2023, fossil fuels were 1/3 of the UK's energy mix. 
 
-What is the UK's current renewable energy generation capacity, and how can the UK government plan capacity growth of 
-the various renewable energy sources in order to achieve NetZero while meeting energy demands?
+This project is my attempt to apply the data analysis skills learned during the intensive data science bootcamp at BrainStation and 
+gain a better understanding of what the UK's future energy scenario might look like.
+
+What is the UK's current renewable energy generation capacity? 
+
+What considerations need to be taken into account by UK policy makers when planning capacity growth of various renewable energy sources?
+
+Will there be enough energy generated to meet demand?
 
 Energy generated is an inherent reflection of energy demand. When the demand for electricity is greater than the base load 
 (ie, the minimum amount of energy needed to be supplied to the grid at any given point in time), 
@@ -43,9 +50,6 @@ with data recorded in half-hour increments.
 
 Through time series analysis, historical data can be used to predict future values of energy output. Those outputs can then be summarised into actionable insights. 
 Ultimately, insights from forecasting models can become the tools for policy makers to make decisions on how the UK can balance energy generation growth to fulfil its Net Zero obligations. 
-
-This project is my attempt to apply the data analysis skills learned during the intensive data science bootcamp at BrainStation and 
-gain a better understanding of what the UK's future energy scenario might look like.
 
 Given the energy generation dataset is a reflection of energy demand in the UK, I used several forecasting models to conduct time series analysis and predict future values of energy output:
 
@@ -58,5 +62,3 @@ Given the energy generation dataset is a reflection of energy demand in the UK, 
 
 """
 )
-#intro
-#energy mix
