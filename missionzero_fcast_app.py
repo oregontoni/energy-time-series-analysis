@@ -21,7 +21,7 @@ with col2:
 #model calculations
 model = joblib.load('wind_generation_SARIMA_model.pkl')
 
-year_to_forecast = st.sidebar.selectbox('Select a year to forecast:', range(2024, 2100))
+year_to_forecast = st.sidebar.selectbox('Select a year to forecast:', range(2024, 2050))
 
 #calculate steps for model to forecast from 2023 onwards
 #X3_w_test starts May 2020
