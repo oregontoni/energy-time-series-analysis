@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-from st-pages import Page, show_pages, add_page_title
+from st_pages import Page, show_pages, add_page_title
 
 # Optional -- adds the title and icon to the current page
 #numbers[#rows, #col, size]
@@ -40,10 +40,11 @@ Energy generated is an inherent reflection of energy demand. When the demand for
 the National Grid reacts by providing additional electricity. National Grid ESO's data portal includes historic energy generation from 2009 to 2024, 
 with data recorded in half-hour increments. 
 
-Forecasting models can map current energy production capacities and extrapolate to the future energy production capacities required in 2050. 
-Through time series analysis, the historical data can be aggregated and summarised into actionable insights (eg, taking the current annual production of 
-wind energy, forecasting the total estimated wind energy production in 2050, and using that number to calculate total required windfarm construction 
-requirements over the next three decades).
+Through time series analysis, historical data can be used to predict future values of energy output. Those outputs can then be summarised into actionable insights. 
+Ultimately, insights from forecasting models can become the tools for policy makers to make decisions on how the UK can balance energy generation growth to fulfil its Net Zero obligations. 
+
+This project is my attempt to apply the data analysis skills learned during the intensive data science bootcamp at BrainStation and 
+gain a better understanding of what the UK's future energy scenario might look like.
 
 Given the energy generation dataset is a reflection of energy demand in the UK, I used several forecasting models to conduct time series analysis and predict future values of energy output:
 
@@ -53,7 +54,6 @@ Given the energy generation dataset is a reflection of energy demand in the UK, 
 
 - SARIMA and SARIMAX
 
-Ultimately, insights from forecasting models can become the tools for policy makers to make decisions on how the UK can balance energy generation growth to fulfil its Net Zero obligations. 
 
 """
 )
