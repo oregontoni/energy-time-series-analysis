@@ -1,82 +1,61 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import plotly.graph_objs as go
 import streamlit as st
-import joblib
-import statsmodels
+from PIL import Image
+
+from st_pages import Page, show_pages, add_page_title
+
+# Optional -- adds the title and icon to the current page
+#numbers[#rows, #col, size]
+logo = Image.open('netzerouk.png')
+
+st.image(logo, width= 800, use_column_width='True')
+
+st.markdown("<h1 style='color:green;'>MISSION ZERO<h1/>", unsafe_allow_html=True)
 
 
-st.markdown("<h1 style='text-align: center; color: green; font-style: italic; margin-bottom: 30px'>UK Net Zero 2050: Will there be enough renewable energy?</h1>", unsafe_allow_html=True)
+# Specify what pages should be shown in the sidebar, and what their titles 
+# and icons should be
+show_pages(
+    [
+        Page("missionzero_home_app.py", "Introduction", "🇬🇧"),
+        Page("missionzero_app.py", "UK Net Zero 2050", "🌏"),
+        Page("missionzero_btm_app.py", "Connecting", "🔗")
+    ]
+)
 
-#write a subheader     
-st.markdown("<h2 style='text-align: center;  font-size: 16px; margin-bottom: 30px'>Time Series Analysis on National Grid ESO Generation Data (2009 - 2024)</h2>", unsafe_allow_html=True)
+st.write(
+"""
+Welcome to my project on time series forecasting to predict the UK's electricity generation capacity 
+and energy mix in 2050 (ie, the year the UK is legally bound to have reached NetZero). 
 
-#######################################################################################
-#model calculations
-model = joblib.load('wind_generation_SARIMA_model.pkl')
+In 2019, the UK became the first country in the world to legally bind itself to a Net Zero target: by 2050, the UK would 
+no longer add more greenhouse gases to the atmosphere than it removes.
 
-year_to_forecast = st.sidebar.selectbox('Select a year to forecast:', range(2024, 2050))
+At the end of 2023, fossil fuels were 1/3 of the UK's energy mix. 
 
-#calculate steps for model to forecast from 2023 onwards
-#X3_w_test starts May 2020
-steps_rem_2020 = 8
-steps_2021_to_2023 = 3*12
-steps_test = steps_rem_2020 + steps_2021_to_2023 + (12*(int(year_to_forecast)-2023))
+What is the UK's current renewable energy generation capacity, and how can the UK government plan capacity growth of 
+the various renewable energy sources in order to achieve NetZero while meeting energy demands?
 
-#generate forecast
-forecast = model.forecast(steps=steps_test)
+Energy generated is an inherent reflection of energy demand. When the demand for electricity is greater than the base load 
+(ie, the minimum amount of energy needed to be supplied to the grid at any given point in time), 
+the National Grid reacts by providing additional electricity. National Grid ESO's data portal includes historic energy generation from 2009 to 2024, 
+with data recorded in half-hour increments. 
 
-#calculate total generation for selected year (MWh)
-#data is in half-hourly records; divide by 2 to get MWh
-selected_yr_forecasted_mwh = forecast.loc[str(year_to_forecast)].sum() / 2
+Forecasting models can map current energy production capacities and extrapolate to the future energy production capacities required in 2050. 
+Through time series analysis, the historical data can be aggregated and summarised into actionable insights (eg, taking the current annual production of 
+wind energy, forecasting the total estimated wind energy production in 2050, and using that number to calculate total required windfarm construction 
+requirements over the next three decades).
 
-#calculate TWh
-selected_yr_forecasted_twh = selected_yr_forecasted_mwh/1000000
+Given the energy generation dataset is a reflection of energy demand in the UK, I used several forecasting models to conduct time series analysis and predict future values of energy output:
 
-#load .csv of non-wind generation in 2023
-non_wind_data = pd.read_csv('energy_gen_2023_excl_wind.csv')
+- Linear Regression
 
-#add wind calculations to dataframe
-non_wind_data.loc[len(non_wind_data)] = ['WIND', selected_yr_forecasted_mwh]
+- XGBoost
 
-#calculate total energy generation
-total_generation = non_wind_data['Generation (MWh)'].sum()
+- SARIMA and SARIMAX
 
-#calculate total energy opex
-total_cost = selected_yr_forecasted_mwh*176
-total_cost_bil = total_cost/1000000000
+Ultimately, insights from forecasting models can become the tools for policy makers to make decisions on how the UK can balance energy generation growth to fulfil its Net Zero obligations. 
 
-############################################################################
-#DOUGHNUT CHART
-
-#create doughnut plot
-colors_dict = {'GAS': 'firebrick', 'NUCLEAR': 'greenyellow', 'IMPORTS':'turquoise', 'BIOMASS': 'darkviolet', 'SOLAR': 'gold', 'HYDRO': 'lightseagreen', 'COAL': 'dimgray',   
-        'STORAGE': 'salmon', 'WIND': 'royalblue'}
-
-values = non_wind_data['Generation (MWh)'].tolist()
-labels = non_wind_data['Energy Sources'].tolist()
-colors = [colors_dict.get(label, 'default_color') for label in labels]
-
-fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.5, 
-                            pull=[0, 0, 0, 0, 0, 0, 0, 0, 0], 
-                            marker_colors=colors, 
-                            textinfo='label',
-                            outsidetextfont=dict(color='black'),
-                            hoverinfo='percent',
-                            hoverlabel=dict(font=dict(size=16, color='black')),
-                            showlegend=False)])
-
-fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span style="font-size: 18px; font-style: italic;"> (assuming static 2023 generation for non-wind energy sources)</span>', 
-                        'y':0.95, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top', 'font_size': 30}, uniformtext_minsize=15, uniformtext_mode='hide', 
-                        annotations=[
-                            dict(text=f'Wind OpEx <br>', x=0.5, y=0.62, font=dict(size=22, color='black'), showarrow=False), 
-                            dict(text=f'<b>£{round(total_cost_bil,0)} bil<b> <br>', x=0.5, y=0.5, font=dict(size=45, color='black'), showarrow=False), 
-                            dict(text=f'{round(selected_yr_forecasted_twh,0)} TWh', x=0.5, y=0.38, font=dict(size=30, color='black'), showarrow=False, 
-                            textangle=0, align='center')], width=750, height=750,
-                            margin=dict(t=125, b=75, l=0, r=0))
-
-fig.update_traces(textfont=dict(size=16))
-
-#display doughnut chart in Streamlit
-
-st.plotly_chart(fig, use_container_width=True)
+"""
+)
+#intro
+#energy mix
