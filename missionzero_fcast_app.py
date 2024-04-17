@@ -6,7 +6,7 @@ import joblib
 import statsmodels
 
 
-st.markdown("<h1 style='text-align: center; color: green; font-style: italic; margin-bottom: 30px'>UK Net Zero 2050: Will there be enough renewable energy?</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: green; font-style: italic; margin-bottom: 30px; whitespace: nowrap'>Will there be enough energy?</h1>", unsafe_allow_html=True)
 
 #write a subheader     
 st.markdown("<h2 style='text-align: center;  font-size: 16px; margin-bottom: 30px'>Time Series Analysis on National Grid ESO Generation Data (2009 - 2024)</h2>", unsafe_allow_html=True)
@@ -66,7 +66,7 @@ fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.5,
                             hoverlabel=dict(font=dict(size=16, color='black')),
                             showlegend=False)])
 
-fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span style="font-size: 18px; font-style: italic;"> (assuming static 2023 generation for non-wind energy sources)</span>', 
+fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span style="font-size: 16px; font-style: italic;"> (select a year on left panel to forecast opex and TWh)</span>', 
                         'y':0.95, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top', 'font_size': 30}, uniformtext_minsize=15, uniformtext_mode='hide', 
                         annotations=[
                             dict(text=f'Wind OpEx <br>', x=0.5, y=0.62, font=dict(size=22, color='black'), showarrow=False), 
@@ -80,3 +80,9 @@ fig.update_traces(textfont=dict(size=16))
 #display doughnut chart in Streamlit
 
 st.plotly_chart(fig, use_container_width=True)
+
+############################################################################
+#write a subheader     
+st.markdown("<h4 style='text-align: left;  font-size: 12px; color: gray; font-style: italic; margin-bottom: 30px'>(assuming static 2023 generation for non-wind energy sources)</h2>", unsafe_allow_html=True)
+
+
