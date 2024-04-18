@@ -1,6 +1,15 @@
 import streamlit as st
 from PIL import Image, ImageOps
 
+
+wind_turbine = open('wind_turbine.mp4', 'rb')
+video_bytes = wind_turbine.read()
+wind_turbine.close()
+
+st.video(wind_turbine, loop=True)
+st.markdown("<div style='margin-bottom: 30px;'></div>", unsafe_allow_html=True)
+
+
 chart_logo = 'green_chart_line.png'
 energy_over_time = 'energy_generation_2009_to_2023.png'
 energy_comparison = 'energy_gen_2009v2023.png'

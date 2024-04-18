@@ -5,4 +5,4 @@ video_bytes = wind_turbine.read()
 
 #
 
-st.video(wind_turbine)
+st.video(wind_turbine, loop=True)
