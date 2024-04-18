@@ -49,7 +49,7 @@ non_wind_data.loc[len(non_wind_data)] = ['WIND', selected_yr_forecasted_mwh]
 total_generation = non_wind_data['Generation (MWh)'].sum()
 
 #calculate total energy opex
-total_cost = selected_yr_forecasted_mwh*176
+total_cost = selected_yr_forecasted_mwh*67
 total_cost_bil = total_cost/1000000000
 
 ############################################################################
@@ -164,7 +164,7 @@ col1, col2, col3 = st.columns([2,14,1])
 with col1:
     st.image(solar, width=125)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> million | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> solar farms</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> solar farms</div>", unsafe_allow_html=True)
 
 st.markdown(f"OR:", unsafe_allow_html=True)
 
