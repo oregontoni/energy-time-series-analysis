@@ -43,7 +43,7 @@ photo = st.container(border=False)
 photo.image(energy_comparison, width=700)
 
 st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>Is Wind the future of UK renewable energy?</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey; font-size: 15px;'>The Climate Change Committee (an independent, non-departmental public body, formed under the Climate Change Act to advice the UK) estimates UK energy demand in 2050 will be approximately <span style='font-weight:bold;'>610 TWh</span>. Click to the next page to compare the model's forecasted Wind output with this estimate.
+st.markdown("""<p style='color: grey; font-size: 15px;'>The Climate Change Committee (an independent, non-departmental public body, formed under the Climate Change Act to advice the UK) estimates UK energy demand in 2050 will be approximately <span style='font-weight:bold;'>610 TWh</span>. <p style='color: grey; font-size: 15px;'>How will energy generation forecasts affect UK policy makers' decisions for infrastructure growth?
 </p>""", unsafe_allow_html=True)
 
 
