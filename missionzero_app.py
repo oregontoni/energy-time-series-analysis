@@ -17,7 +17,7 @@ st.markdown("<h1 style='color:green;'>MISSION ZERO<h1/>", unsafe_allow_html=True
 show_pages(
     [
         Page("missionzero_app.py", "Introduction", "🇬🇧"),
-        Page("missionzero_home_app.py", "Welcome", "💨")
+        Page("missionzero_home_app.py", "Welcome", "💨"),
         Page("missionzero_tandn_app.py", "Then & Now", "⌛"),
         Page("missionzero_fcast_app.py", "UK Net Zero 2050", "🌏"),
         Page("missionzero_btm_app.py", "Connecting", "🔗")
