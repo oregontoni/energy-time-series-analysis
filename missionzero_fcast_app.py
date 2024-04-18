@@ -99,12 +99,13 @@ st.markdown(f"Wind energy generation forecasted <span style='font-weight:bold; f
 ############################################################################
 
 #opex and capex calculations for each energy source
-w_strike_price = 176 #per MWh
+w_off_strike_price = 64 #per MWh
+w_on_strike_price = 73 #per MWh
 w_years_to_build = 0.5
 cost_wind_farm = 617.38 #mil GBP per 50-turbine farm, 2.75MW ea
 w_mwh_year = 219000 #50 turbines * 4380MWh/yr per turbine
 
-w_total_opex = w_strike_price * selected_yr_forecasted_mwh 
+w_total_opex = (w_off_strike_price * selected_yr_forecasted_mwh * 0.66) + (w_on_strike_price * selected_yr_forecasted_mwh * 0.33)
 w_total_capex = (years_into_the_future/w_years_to_build)* cost_wind_farm
 w_total_farms = selected_yr_forecasted_mwh/w_mwh_year
 w_total_cost = ((w_total_capex * w_total_farms) + w_total_opex)/1000000000
@@ -114,12 +115,25 @@ w_total_cost = ((w_total_capex * w_total_farms) + w_total_opex)/1000000000
 s_strike_price = 61 #per MWh
 s_years_to_build = 1
 s_mwh_year = 42 #20MW farm * 2.1 MWH/year/MW
-cost_solar_farm = 1.98 #mil GBP per 20MW farm
+cost_solar_farm = 0.98 #mil GBP per 20MW farm
 
 s_total_opex = s_strike_price * s_mwh_year 
 s_total_capex = (years_into_the_future/s_years_to_build)* cost_solar_farm
 s_total_farms = selected_yr_forecasted_mwh/s_mwh_year
 s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000
+
+
+
+#hy_strike_price = 102 #per MWh
+#hy_years_to_build = 3
+#hy_mwh_year = 4000 #1GW plant * 4,000 MWh/year/GW
+#cost_hydro_plant = 3.4 #mil GBP per plant
+#hy_total_plant = selected_yr_forecasted_mwh/hy_mwh_year
+
+#hy_total_opex = hy_strike_price * hy_mwh_year 
+#hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
+#hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/10000000
+
 
 
 n_strike_price = 87 #per MWh
@@ -153,6 +167,16 @@ with col2:
     st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> million | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> solar farms</div>", unsafe_allow_html=True)
 
 st.markdown(f"OR:", unsafe_allow_html=True)
+
+#hydro equivalent
+#hydro = Image.open('hydro_plant.jpeg')
+#col1, col2, col3 = st.columns([2,14,1])
+#with col1:
+#    st.image(hydro, width=125)
+#with col2:
+#    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> hydro plants</div>", unsafe_allow_html=True)
+
+#st.markdown(f"OR:", unsafe_allow_html=True)
 
 #nuclear equivalent
 nuclear = Image.open('nuclear_plant.jpeg')

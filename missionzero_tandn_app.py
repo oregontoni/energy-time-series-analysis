@@ -14,8 +14,12 @@ with col1:
 with col2:
     st.markdown("<h1 style='text-align: left; font-size: 34px; color: green; font-style: italic; margin-bottom: 30px; whitespace: nowrap'>Before forecasting.....what are the trends?</h1>", unsafe_allow_html=True)
 
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>\"Always EDA. Always.\"</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>Simply put, EDA (Exploratory Data Analysis) is asking the question: what general patterns can be seen in the data? Before applying any manipulation, what context can these patterns provide to our further research?
+</p>""", unsafe_allow_html=True)
+
 st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>Micro trends: monthly</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey; font-size: 15px;'>The monthly averages--the red horizontal lines--show a seasonal energy generation pattern through the years. The highest points are in winter and the lowest points are in summer.
+st.markdown("""<p style='color: grey; font-size: 15px;'>The monthly averages--the red horizontal lines--show a U-pattern. This shows a seasonal energy generation pattern, with the highest points in winter and the lowest points in summer.
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_month, width=700)
@@ -26,14 +30,14 @@ st.markdown("""<p style='color: grey;'>There is a general downward trend in ener
 photo = st.container(border=False)
 photo.image(energy_over_time, width=700)
 
-st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>How will the general downward trend in energy generation translate into forecast modelling.........?</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey; font-size: 15px;'>The downward trend in energy generation has presented a limitation to the model's ability to accurately forecast future values.
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>How will the general downward trend in energy generation translate into forecast modelling?</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>Unfortunately, the downward trend seen in EDA presented a limitation to the model's ability to accurately forecast future values. (The UK total generation being negative in 2050 is a highly unlikely future scenario.)
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_neg_gen, width=700)
 
-st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>..............will the UK realistically be generating negative levels of energy in 2050?</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey; font-size: 15px;'>Although there was an overall downward slope the historical trends graph, not all energy sources have declined in total energy output since 2009. In contrast to declining Coal energy generation, Wind energy generation has grown exponentially.
+st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>How can we model a more realistic scenario for UK energy generation in 2050?</h2>", unsafe_allow_html=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>Although there was an overall downward slope the historical trends graph, not all energy sources have declined in total energy output since 2009. In contrast to declining Coal energy generation, Wind energy generation (in blue) has grown exponentially.
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_comparison, width=700)
