@@ -174,7 +174,7 @@ col1, col2, col3 = st.columns([2,14,1])
 with col1:
     st.image(hydro, width=125)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> hydro plants</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(hy_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(hy_total_plant,0))}</span> hydro plants</div>", unsafe_allow_html=True)
 
 st.markdown(f"OR:", unsafe_allow_html=True)
 
