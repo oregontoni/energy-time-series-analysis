@@ -124,15 +124,15 @@ s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000
 
 
 
-#hy_strike_price = 102 #per MWh
-#hy_years_to_build = 3
-#hy_mwh_year = 4000 #1GW plant * 4,000 MWh/year/GW
-#cost_hydro_plant = 3.4 #mil GBP per plant
-#hy_total_plant = selected_yr_forecasted_mwh/hy_mwh_year
+hy_strike_price = 102 #per MWh
+hy_years_to_build = 3
+hy_mwh_year = 4000 #1GW plant * 4,000 MWh/year/GW
+cost_hydro_plant = 3.4 #mil GBP per plant
+hy_total_plant = selected_yr_forecasted_mwh/hy_mwh_year
 
-#hy_total_opex = hy_strike_price * hy_mwh_year 
-#hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
-#hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/10000000
+hy_total_opex = hy_strike_price * hy_mwh_year 
+hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
+hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/10000000
 
 
 
@@ -169,14 +169,14 @@ with col2:
 st.markdown(f"OR:", unsafe_allow_html=True)
 
 #hydro equivalent
-#hydro = Image.open('hydro_plant.jpeg')
-#col1, col2, col3 = st.columns([2,14,1])
-#with col1:
-#    st.image(hydro, width=125)
-#with col2:
-#    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> hydro plants</div>", unsafe_allow_html=True)
+hydro = Image.open('hydro_plant.jpeg')
+col1, col2, col3 = st.columns([2,14,1])
+with col1:
+    st.image(hydro, width=125)
+with col2:
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> hydro plants</div>", unsafe_allow_html=True)
 
-#st.markdown(f"OR:", unsafe_allow_html=True)
+st.markdown(f"OR:", unsafe_allow_html=True)
 
 #nuclear equivalent
 nuclear = Image.open('nuclear_plant.jpeg')
