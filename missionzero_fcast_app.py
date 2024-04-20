@@ -120,31 +120,45 @@ cost_solar_farm = 0.98 #mil GBP per 20MW farm
 s_total_opex = s_strike_price * s_mwh_year 
 s_total_capex = (years_into_the_future/s_years_to_build)* cost_solar_farm
 s_total_farms = selected_yr_forecasted_mwh/s_mwh_year
-s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000
+s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000000
 
 
 
-hy_strike_price = 102 #per MWh
-hy_years_to_build = 3
-hy_mwh_year = 4000 #1GW plant * 4,000 MWh/year/GW
+#hy_strike_price = 102 #per MWh
+#hy_years_to_build = 3
+
 cost_hydro_plant = 3.4 #mil GBP per plant
-hy_total_plant = selected_yr_forecasted_mwh/hy_mwh_year
 
-hy_total_opex = hy_strike_price * hy_mwh_year 
-hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
-hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/10000000
+#if years_into_the_future - hy_years_to_build > 0:
+#    hy_total_capex = cost_hydro_plant
+#    hy_mwh_year = 4000 #1GW plant * 4,000 MWh/year/GW
+#else:
+#    hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
+#    hy_mwh_year = 0
+
+#hy_total_plant = selected_yr_forecasted_mwh/hy_mwh_year
+
+#hy_total_opex = hy_strike_price * hy_mwh_year 
+#hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
+#hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/1000000000
 
 
 
 n_strike_price = 87 #per MWh
 n_years_to_build = 12
-n_mwh_year = 25600000 #3.2GW plant * 8,000,000 MWh/year/GW
 cost_nuclear_plant = 35000 #mil GBP per plant
+
+if years_into_the_future - n_years_to_build > 0:
+    n_total_capex = cost_nuclear_plant
+    n_mwh_year = 25600000 #3.2GW plant * 8,000,000 MWh/year/GW
+else:
+    n_total_capex = (years_into_the_future/n_years_to_build)* cost_nuclear_plant
+    n_mwh_year = 0 #3.2GW plant * 8,000,000 MWh/year/GW
+
 n_total_plant = selected_yr_forecasted_mwh/n_mwh_year
 
 n_total_opex = n_strike_price * n_mwh_year 
-n_total_capex = (years_into_the_future/n_years_to_build)* cost_nuclear_plant
-n_total_cost = ((n_total_capex * n_total_plant) + n_total_opex)/10000000
+n_total_cost = ((n_total_capex * n_total_plant) + n_total_opex)/1000000000
 
 #wind equivalent
 wind_turbine = Image.open('wind_turbine_black.jpeg')
@@ -169,14 +183,14 @@ with col2:
 st.markdown(f"OR:", unsafe_allow_html=True)
 
 #hydro equivalent
-hydro = Image.open('hydro_plant.jpeg')
-col1, col2, col3 = st.columns([2,14,1])
-with col1:
-    st.image(hydro, width=125)
-with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(hy_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(hy_total_plant,0))}</span> hydro plants</div>", unsafe_allow_html=True)
+#hydro = Image.open('hydro_plant.jpeg')
+#col1, col2, col3 = st.columns([2,14,1])
+#with col1:
+#    st.image(hydro, width=125)
+#with col2:
+#    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(hy_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(hy_total_plant,0))}</span> hydro plants</div>", unsafe_allow_html=True)
 
-st.markdown(f"OR:", unsafe_allow_html=True)
+#st.markdown(f"OR:", unsafe_allow_html=True)
 
 #nuclear equivalent
 nuclear = Image.open('nuclear_plant.jpeg')
