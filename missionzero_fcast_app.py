@@ -127,7 +127,7 @@ s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000000
 #hy_strike_price = 102 #per MWh
 #hy_years_to_build = 3
 
-cost_hydro_plant = 3.4 #mil GBP per plant
+#cost_hydro_plant = 3.4 #mil GBP per plant
 
 #if years_into_the_future - hy_years_to_build > 0:
 #    hy_total_capex = cost_hydro_plant
@@ -153,7 +153,7 @@ if years_into_the_future - n_years_to_build > 0:
     n_mwh_year = 25600000 #3.2GW plant * 8,000,000 MWh/year/GW
 else:
     n_total_capex = (years_into_the_future/n_years_to_build)* cost_nuclear_plant
-    n_mwh_year = 0 #3.2GW plant * 8,000,000 MWh/year/GW
+    n_mwh_year = (years_into_the_future/n_years_to_build)*25600000
 
 n_total_plant = selected_yr_forecasted_mwh/n_mwh_year
 
