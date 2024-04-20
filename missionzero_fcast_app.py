@@ -128,7 +128,7 @@ else:
 s_total_farms = selected_yr_forecasted_mwh/s_mwh_year
 
 s_total_opex = s_strike_price * s_mwh_year 
-s_total_cost = ((s_total_capex * s_total_farms) + s_total_opex)/1000000000
+s_total_cost = ((s_total_capex * s_total_farms) + s_total_opex)/1000000
 
 #s_total_opex = s_strike_price * s_mwh_year 
 #s_total_capex = (years_into_the_future/s_years_to_build)* cost_solar_farm
