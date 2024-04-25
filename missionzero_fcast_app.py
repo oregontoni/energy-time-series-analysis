@@ -34,22 +34,22 @@ forecast = model.forecast(steps=steps_test)
 
 #calculate total generation for selected year (MWh)
 #data is in half-hourly records; divide by 2 to get MWh
-selected_yr_forecasted_mwh = forecast.loc[str(year_to_forecast)].sum() / 2
+selected_yr_forecasted_wind_mwh = forecast.loc[str(year_to_forecast)].sum() / 2
 
 #calculate TWh
-selected_yr_forecasted_twh = selected_yr_forecasted_mwh/1000000
+selected_yr_forecasted_wind_twh = selected_yr_forecasted_wind_mwh/1000000
 
 #load .csv of non-wind generation in 2023
 non_wind_data = pd.read_csv('energy_gen_2023_excl_wind.csv')
 
 #add wind calculations to dataframe
-non_wind_data.loc[len(non_wind_data)] = ['WIND', selected_yr_forecasted_mwh]
+non_wind_data.loc[len(non_wind_data)] = ['WIND', selected_yr_forecasted_wind_mwh]
 
 #calculate total energy generation
 total_generation = non_wind_data['Generation (MWh)'].sum()
 
 #calculate total energy opex
-total_cost = selected_yr_forecasted_mwh*67
+total_cost = selected_yr_forecasted_wind_mwh*67
 total_cost_bil = total_cost/1000000000
 
 ############################################################################
@@ -99,44 +99,42 @@ st.markdown(f"Wind energy generation forecasted <span style='font-weight:bold; f
 ############################################################################
 
 #opex and capex calculations for each energy source
-w_off_strike_price = 64 #per MWh
-w_on_strike_price = 73 #per MWh
+
+#WIND
+#UK govt March 2024 strike prices for onshore and offshore wind
+w_off_strike_price = 73 #per MWh
+w_on_strike_price = 64 #per MWh
 w_years_to_build = 0.5
-cost_wind_farm = 617.38 #mil GBP per 50-turbine farm, 2.75MW ea
-w_mwh_year = 219000 #50 turbines * 4380MWh/yr per turbine
 
-w_total_opex = (w_off_strike_price * selected_yr_forecasted_mwh * 0.66) + (w_on_strike_price * selected_yr_forecasted_mwh * 0.33)
-w_total_capex = (years_into_the_future/w_years_to_build)* cost_wind_farm
-w_total_farms = selected_yr_forecasted_mwh/w_mwh_year
-w_total_cost = ((w_total_capex * w_total_farms) + w_total_opex)/1000000000
+#avg build cost per 50-turbine farm
+cost_wind_farm = 617380000 #mil GBP per 50-turbine farm, 2.75MW ea
+
+#wind generation per farm = avg 50 turbines * 4380MWh/yr per turbine
+w_mwh_year = 219000 
+
+w_total_farms = selected_yr_forecasted_wind_mwh/w_mwh_year
+w_total_capex = w_total_farms * cost_wind_farm
+w_total_opex = (w_off_strike_price * selected_yr_forecasted_wind_mwh * 0.66) + (w_on_strike_price * selected_yr_forecasted_wind_mwh * 0.33)
+w_total_cost = (w_total_capex + w_total_opex)/1000000000
 
 
-
+#SOLAR
 s_strike_price = 61 #per MWh
 s_years_to_build = 1
-s_mwh_year = 42 #20MW farm * 2.1 MWH/year/MW
-cost_solar_farm = 0.98 #mil GBP per 20MW farm
+
+#avg build cost per solar farm
+cost_solar_farm = 980000 #mil GBP per 20MW farm
+
+#solar generation per farm = 20MW farm * 2146 MWH/year/MW
+s_mwh_year = 42920
+
+s_total_farms = selected_yr_forecasted_wind_mwh/s_mwh_year
+s_total_capex = s_total_farms * cost_solar_farm
+s_total_opex = s_strike_price * selected_yr_forecasted_wind_mwh 
+s_total_cost = (s_total_capex + s_total_opex)/1000000000
 
 
-if years_into_the_future - s_years_to_build > 0:
-    s_total_capex = cost_solar_farm
-    s_mwh_year = 42 #3.2GW plant * 8,000,000 MWh/year/GW
-else:
-    s_total_capex = (years_into_the_future/s_years_to_build)* cost_solar_farm
-    s_mwh_year = (years_into_the_future/s_years_to_build)*42
-
-s_total_farms = selected_yr_forecasted_mwh/s_mwh_year
-
-s_total_opex = s_strike_price * s_mwh_year 
-s_total_cost = ((s_total_capex * s_total_farms) + s_total_opex)/1000000
-
-#s_total_opex = s_strike_price * s_mwh_year 
-#s_total_capex = (years_into_the_future/s_years_to_build)* cost_solar_farm
-#s_total_farms = selected_yr_forecasted_mwh/s_mwh_year
-#s_total_cost = ((s_total_capex * s_total_farms)+ s_total_opex)/1000000000
-
-
-
+#HYDRO
 #hy_strike_price = 102 #per MWh
 #hy_years_to_build = 3
 
@@ -149,29 +147,27 @@ s_total_cost = ((s_total_capex * s_total_farms) + s_total_opex)/1000000
 #    hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
 #    hy_mwh_year = 0
 
-#hy_total_plant = selected_yr_forecasted_mwh/hy_mwh_year
+#hy_total_plant = selected_yr_forecasted_wind_mwh/hy_mwh_year
 
 #hy_total_opex = hy_strike_price * hy_mwh_year 
 #hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
 #hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/1000000000
 
 
-
+#NUCLEAR
 n_strike_price = 87 #per MWh
 n_years_to_build = 12
-cost_nuclear_plant = 35000 #mil GBP per plant
 
-if years_into_the_future - n_years_to_build > 0:
-    n_total_capex = cost_nuclear_plant
-    n_mwh_year = 25600000 #3.2GW plant * 8,000,000 MWh/year/GW
-else:
-    n_total_capex = (years_into_the_future/n_years_to_build)* cost_nuclear_plant
-    n_mwh_year = (years_into_the_future/n_years_to_build)*25600000
+#avg build cost per nuclear power plant
+cost_nuclear_plant = 35000000000 #mil GBP per plant
 
-n_total_plant = selected_yr_forecasted_mwh/n_mwh_year
+#nuclear energy generation per 3.2FW plant * 8,000,000 MWh/year/GW
+n_mwh_year = 25600000
 
-n_total_opex = n_strike_price * n_mwh_year 
-n_total_cost = ((n_total_capex * n_total_plant) + n_total_opex)/1000000000
+n_total_plant = selected_yr_forecasted_wind_mwh/n_mwh_year
+n_total_capex = n_total_plant * cost_nuclear_plant
+n_total_opex = n_strike_price * selected_yr_forecasted_wind_mwh
+n_total_cost = (n_total_capex + n_total_opex)/1000000000
 
 #wind equivalent
 wind_turbine = Image.open('wind_turbine_black.jpeg')
