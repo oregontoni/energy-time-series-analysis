@@ -77,7 +77,7 @@ fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span
                         annotations=[
                             dict(text=f'Wind OpEx <br>', x=0.5, y=0.62, font=dict(size=22, color='black'), showarrow=False), 
                             dict(text=f'<b>£{round(total_cost_bil,0)} bil<b> <br>', x=0.5, y=0.5, font=dict(size=45, color='black'), showarrow=False), 
-                            dict(text=f'{round(selected_yr_forecasted_twh,0)} TWh', x=0.5, y=0.38, font=dict(size=30, color='black'), showarrow=False, 
+                            dict(text=f'{round(selected_yr_forecasted_wind_twh,0)} TWh', x=0.5, y=0.38, font=dict(size=30, color='black'), showarrow=False, 
                             textangle=0, align='center')], width=750, height=750,
                             margin=dict(t=125, b=75, l=0, r=0))
 
