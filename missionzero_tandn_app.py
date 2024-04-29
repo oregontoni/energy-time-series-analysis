@@ -44,10 +44,10 @@ photo = st.container(border=False)
 photo.image(energy_comparison, width=700)
 
 st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>Is Wind the future of UK renewable energy?</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey; font-size: 15px;'>The Climate Change Committee (an independent, non-departmental public body, formed under the Climate Change Act to advice the UK) estimates UK energy demand in 2050 will be approximately <span style='font-weight:bold;'>610 TWh</span>. <p style='color: grey; font-size: 15px;'>How will energy generation forecasts affect UK policy makers' decisions for infrastructure growth?
+st.markdown("""<p style='color: grey; font-size: 15px;'>The same SARIMA model used to predict overall generation predicts positive total energy generation when modelling solely for wind generation.
 </p>""", unsafe_allow_html=True)
+photo = st.container(border=False)
+photo.image(energy_wind_fcst, width=700)
 
-
-#with st.sidebar.container():
-#    turbine = Image.open('wind_tbin_drwg.png')
-#    st.image(turbine, width= use_column_width=True)
+st.markdown("""<p style='color: grey; font-size: 15px;'>Next, we will compare the modelled wind energy generation capacity growth alongside static energy capacity for other energy sources.
+</p>""", unsafe_allow_html=True)

@@ -72,12 +72,11 @@ fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.5,
                             hoverlabel=dict(font=dict(size=16, color='black')),
                             showlegend=False)])
 
-fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span style="font-size: 16px; font-style: italic;"> (select a year on left panel to forecast opex and TWh)</span>', 
+fig.update_layout(title={'text': f'UK Energy Mix in {year_to_forecast} <br><span style="font-size: 16px; font-style: italic;"> (select a year on left panel to forecast TWh)</span>', 
                         'y':0.95, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top', 'font_size': 30}, uniformtext_minsize=15, uniformtext_mode='hide', 
                         annotations=[
-                            dict(text=f'Wind OpEx <br>', x=0.5, y=0.62, font=dict(size=22, color='black'), showarrow=False), 
-                            dict(text=f'<b>£{round(total_cost_bil,0)} bil<b> <br>', x=0.5, y=0.5, font=dict(size=45, color='black'), showarrow=False), 
-                            dict(text=f'{round(selected_yr_forecasted_wind_twh,0)} TWh', x=0.5, y=0.38, font=dict(size=30, color='black'), showarrow=False, 
+                            dict(text=f'<b>{round(selected_yr_forecasted_wind_twh,0)} TWh<b> <br>', x=0.5, y=0.5, font=dict(size=45, color='black'), showarrow=False),
+                            dict(text=f'wind generation', x=0.5, y=0.41, font=dict(size=28, color='black'), showarrow=False,
                             textangle=0, align='center')], width=750, height=750,
                             margin=dict(t=125, b=75, l=0, r=0))
 
@@ -89,8 +88,12 @@ st.plotly_chart(fig, use_container_width=True)
 
 ############################################################################
 #write a subheader     
-st.markdown("<h4 style='text-align: left;  font-size: 12px; color: gray; font-style: italic; margin-bottom: 30px'>(assuming static 2023 generation for non-wind energy sources)</h2>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: left;  font-size: 15px; color: gray; font-style: italic; margin-bottom: 30px'>(assuming static 2023 generation for non-wind energy sources)</h2>", unsafe_allow_html=True)
 
+############################################################################
+
+st.markdown("""<p style='color: black; font-size: 25px;'>UK energy demand in 2050 is estimated to be <span style='font-weight:bold;'>610 TWh</span>. <p style='color: grey; font-size: 15px; font-style: italic; margin-bottom: 30px'>How will energy generation forecasts affect UK policy makers' decisions for infrastructure growth?
+</p>""", unsafe_allow_html=True)
 ############################################################################
 
 years_into_the_future = year_to_forecast - 2023
@@ -135,23 +138,18 @@ s_total_cost = (s_total_capex + s_total_opex)/1000000000
 
 
 #HYDRO
-#hy_strike_price = 102 #per MWh
-#hy_years_to_build = 3
+hy_strike_price = 102 #per MWh
+hy_years_to_build = 3
 
-#cost_hydro_plant = 3.4 #mil GBP per plant
+cost_hydro_plant = 3400000 #mil GBP per plant
 
-#if years_into_the_future - hy_years_to_build > 0:
-#    hy_total_capex = cost_hydro_plant
-#    hy_mwh_year = 4000 #1GW plant * 4,000 MWh/year/GW
-#else:
-#    hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
-#    hy_mwh_year = 0
+#hydro generation per plant = 1GW plant * 4,000 MWh/year/GW
+hy_mwh_year = 4000
 
-#hy_total_plant = selected_yr_forecasted_wind_mwh/hy_mwh_year
-
-#hy_total_opex = hy_strike_price * hy_mwh_year 
-#hy_total_capex = (years_into_the_future/hy_years_to_build)* cost_hydro_plant
-#hy_total_cost = ((hy_total_capex * hy_total_plant) + hy_total_opex)/1000000000
+hy_total_plant = selected_yr_forecasted_wind_mwh/hy_mwh_year
+hy_total_capex = hy_total_plant * cost_hydro_plant
+hy_total_opex = hy_strike_price * selected_yr_forecasted_wind_mwh
+hy_total_cost = (hy_total_capex + hy_total_opex)/1000000000
 
 
 #NUCLEAR
@@ -172,11 +170,11 @@ n_total_cost = (n_total_capex + n_total_opex)/1000000000
 #wind equivalent
 wind_turbine = Image.open('wind_turbine_black.jpeg')
 
-col1, col2, col3 = st.columns([1,8,2])
+col1, col2, col3 = st.columns([1,12,1])
 with col1:
     st.image(wind_turbine, width=100)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(w_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(w_total_farms,0))}</span> wind farms</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(w_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(w_total_farms,0))}</span> wind farms </div>", unsafe_allow_html=True) 
 
 
 st.markdown(f"This amount of Wind energy generation equates to:", unsafe_allow_html=True)
@@ -187,19 +185,19 @@ col1, col2, col3 = st.columns([2,14,1])
 with col1:
     st.image(solar, width=125)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> solar farms</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(s_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(s_total_farms,0))}</span> solar farms </div>", unsafe_allow_html=True)
 
 st.markdown(f"OR:", unsafe_allow_html=True)
 
 #hydro equivalent
-#hydro = Image.open('hydro_plant.jpeg')
-#col1, col2, col3 = st.columns([2,14,1])
-#with col1:
-#    st.image(hydro, width=125)
-#with col2:
-#    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(hy_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(hy_total_plant,0))}</span> hydro plants</div>", unsafe_allow_html=True)
+hydro = Image.open('hydro_plant.jpeg')
+col1, col2, col3 = st.columns([2,14,1])
+with col1:
+    st.image(hydro, width=125)
+with col2:
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(hy_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(hy_total_plant,0))}</span> hydro plants</div>", unsafe_allow_html=True)
 
-#st.markdown(f"OR:", unsafe_allow_html=True)
+st.markdown(f"OR:", unsafe_allow_html=True)
 
 #nuclear equivalent
 nuclear = Image.open('nuclear_plant.jpeg')
@@ -207,4 +205,63 @@ col1, col2, col3 = st.columns([1,8,1])
 with col1:
     st.image(nuclear, width=100)
 with col2:
-    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(n_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(n_total_plant,0))}</span> nuclear plants</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align: center; font-size: 36px; vertical-align: bottom;'><span style='font-weight:bold;'>£{int(round(n_total_cost,0))}</span> Billion | <span style='font-weight: bold;'>{int(round(n_total_plant,0))}</span> nuclear plants<sup style='font-size:.8em;'>*</sup> </div>", unsafe_allow_html=True)
+
+
+#comment * from nuclear power plants*    
+st.markdown("<h4 style='text-align: left;  font-size: 15px; color: gray; font-style: italic; margin-bottom: 30px'>*construction of nuclear power plants require an average of 12 years; energy generation would lag behind hydro, which has a construction requirement of ~3 years, and wind and solar, which have construction requirements of ~1 year</h2>", unsafe_allow_html=True)
+
+#############################################################################################
+st.write(
+"""
+
+**Additional points to  consider:**  
+
+In order to increase generation capacity to meet the estimated 610 TWh of energy demand by 2050, the UK government will likely need to implement policies that encourage the capacity growth of multiple energy sources, rather than focusing on growing capacity of a single energy source. There are some additional considerations to growing the generation capacity of  energy sources listed above.
+
+**Hydro:**
+- even disregarding the environmental impacts of constructiong hydropower plants (ie, flooding), many of the most economically attractive sites for hydropower schemes in the UK [have already been used](https://www.gov.uk/guidance/harnessing-hydroelectric-power). The UK government will likely only continue to develop small-scale hydro sites.
+
+**Nuclear:**  
+- beyond the longer construction time required for nuclear power plants, an additional [20 to 30 years is required](https://energy.ec.europa.eu/topics/nuclear-energy/decommissioning-nuclear-facilities_en) at the end of an average nuclear power plant's 30-year lifespan to remove nuclear material and complete environmental restoration of the site.  
+
+**Next Steps:**  
+- applying the same SARIMA model, what is the total estimated solar energy generation in 2050?
+- what is the remaining gap between estimated energy generation and estimated energy demand? 
+- how will the UK government's [updated rule for batteries](https://www.nationalgrideso.com/document/300231/download) (ie, battery storage) affect the grid's ability to accommodate growth in energy generation?  
+
+
+
+
+**Citations:**  
+
+[2050 Energy Demand](https://www.theccc.org.uk/wp-content/uploads/2020/12/Sector-summary-Electricity-generation.pdf)  
+
+Opex calculations  
+[March 2024 UK government update: maximum renewable energy strike prices per MWh](https://www.gov.uk/government/news/boost-for-offshore-wind-as-government-raises-maximum-prices-in-renewable-energy-auction)
+
+Wind  
+[avg generation per wind turbine](http://anemoiservices.com/industry-news/how-much-electricity-does-a-wind-turbine-produce/)  
+[avg construction cost of wind farm](https://www.briefingsforbritain.co.uk/the-costs-offshore-wind-power-blindness-and-insight/#_ftn1)  
+[avg construction time of wind farm](https://www.usgs.gov/faqs/how-many-homes-can-average-wind-turbine-power)  
+
+Solar  
+[avg generation per solar farm](https://www.freeingenergy.com/math/solar-pv-gwh-per-mw-power-energy-mwh-m147/)  
+[avg construction cost of solar farm](https://solarenergyuk.org/news/large-scale-solar-provides-cheapest-power-says-government-report/)  
+[avg construction time of solar farm](https://solairworld.com/how-long-does-it-take-to-build-a-solar-power-plant/?expand_article=1)
+
+Hydro  
+[avg generation per hydro plant](https://www.renewableenergyhub.co.uk/main/hydroelectricity-information/costs-associated-with-hydroelectricity)  
+[avg construction cost of hydro plant](https://www.renewableenergyhub.co.uk/main/hydroelectricity-information/costs-associated-with-hydroelectricity)  
+[avg construction time of hydro plant](https://renewablesfirst.co.uk/renewable-energy-technologies/hydropower/hydropower-learning-centreold/how-long-will-a-hydro-project-take/)
+
+Nuclear  
+[avg generation per nuclear power plant](https://www.freeingenergy.com/math/nuclear-megawatt-kilowatt-hour-per-year-m193/)  
+[avg construction cost of nuclear power plant](https://www.theguardian.com/business/2024/jan/23/hinkley-point-c-could-be-delayed-to-2031-and-cost-up-to-35bn-says-edf#:~:text=It%20said%20that%20the%20cost,had%20halted%20funding%20for%20Hinkley.)  
+[avg construction time of nuclear power plant](https://www.rigzone.com/news/uk_plans_to_build_third_new_32_gw_nuclear_plant-12-jan-2024-175360-article/)  
+ 
+
+
+
+"""
+)
