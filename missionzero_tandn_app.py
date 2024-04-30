@@ -3,11 +3,11 @@ from PIL import Image, ImageOps
 
 
 chart_logo = './streamlit_images/green_chart_line.png'
-energy_over_time = 'energy_generation_2009_to_2023.png'
-energy_comparison = 'energy_gen_2009v2023.png'
-energy_month = 'generation_by_month_09to24.png'
-energy_neg_gen = 'y_train_fitx_matching.png'
-energy_wind_fcst = 'y_train_fw3_forecasted2049.png'
+energy_over_time = './figures/energy_generation_2009_to_2023.png'
+energy_comparison = './figures/energy_gen_2009v2023.png'
+energy_month = './figures/generation_by_month_09to24.png'
+energy_neg_gen = './figures/y_train_fitx_matching.png'
+energy_wind_fcst = './figures/y_train_fw3_forecasted2049.png'
 
 col1, mid, col2 = st.columns([1,1,20])
 with col1:
