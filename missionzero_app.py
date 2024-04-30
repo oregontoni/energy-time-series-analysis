@@ -5,7 +5,7 @@ from st_pages import Page, show_pages, add_page_title
 
 # Optional -- adds the title and icon to the current page
 #numbers[#rows, #col, size]
-logo = Image.open('netzerouk.png')
+logo = Image.open('./streamlit_images/netzerouk.png')
 
 st.image(logo, width= 800, use_column_width='True')
 

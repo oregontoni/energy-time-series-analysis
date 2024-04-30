@@ -7,7 +7,7 @@ import statsmodels
 from PIL import Image, ImageOps
 
 col1, mid, col2 = st.columns([1,1,20])
-turbine=Image.open('green_wind.png')
+turbine=Image.open('./streamlit_images/green_wind.png')
 
 with col1:
        st.image(turbine, width=65)
@@ -168,7 +168,7 @@ n_total_opex = n_strike_price * selected_yr_forecasted_wind_mwh
 n_total_cost = (n_total_capex + n_total_opex)/1000000000
 
 #wind equivalent
-wind_turbine = Image.open('wind_turbine_black.jpeg')
+wind_turbine = Image.open('./streamlit_images/wind_turbine_black.jpeg')
 
 col1, col2, col3 = st.columns([1,12,1])
 with col1:
@@ -180,7 +180,7 @@ with col2:
 st.markdown(f"This amount of Wind energy generation equates to:", unsafe_allow_html=True)
 
 #solar equivalent
-solar = Image.open('solar_farm.png')
+solar = Image.open('./streamlit_images/solar_farm.png')
 col1, col2, col3 = st.columns([2,14,1])
 with col1:
     st.image(solar, width=125)
@@ -190,7 +190,7 @@ with col2:
 st.markdown(f"OR:", unsafe_allow_html=True)
 
 #hydro equivalent
-hydro = Image.open('hydro_plant.jpeg')
+hydro = Image.open('./streamlit_images/hydro_plant.jpeg')
 col1, col2, col3 = st.columns([2,14,1])
 with col1:
     st.image(hydro, width=125)
@@ -200,7 +200,7 @@ with col2:
 st.markdown(f"OR:", unsafe_allow_html=True)
 
 #nuclear equivalent
-nuclear = Image.open('nuclear_plant.jpeg')
+nuclear = Image.open('./streamlit_images/nuclear_plant.jpeg')
 col1, col2, col3 = st.columns([1,8,1])
 with col1:
     st.image(nuclear, width=100)
@@ -233,12 +233,14 @@ In order to increase generation capacity to meet the estimated 610 TWh of energy
 
 
 
-**Citations:**  
+**Citations**  
 
 [2050 Energy Demand](https://www.theccc.org.uk/wp-content/uploads/2020/12/Sector-summary-Electricity-generation.pdf)  
 
-Opex calculations  
-[March 2024 UK government update: maximum renewable energy strike prices per MWh](https://www.gov.uk/government/news/boost-for-offshore-wind-as-government-raises-maximum-prices-in-renewable-energy-auction)
+Opex calculations:  
+[March 2024 UK government update: maximum renewable energy strike prices per MWh](https://www.gov.uk/government/news/boost-for-offshore-wind-as-government-raises-maximum-prices-in-renewable-energy-auction)  
+
+Capex calculations:  
 
 Wind  
 [avg generation per wind turbine](http://anemoiservices.com/industry-news/how-much-electricity-does-a-wind-turbine-produce/)  

@@ -2,9 +2,9 @@ import streamlit as st
 from PIL import Image, ImageOps
 
 st.title("Toni Chan")
-logo = Image.open('toni_chan_photo.jpg')
-qr_code_path = 'qr-code.png'
-linkedin_logo = 'linkedin_logo.png'
+logo = Image.open('./streamlit_images/toni_chan_photo.jpg')
+qr_code_path = './streamlit_images/qr-code.png'
+linkedin_logo = './streamlit_images/linkedin_logo.png'
 
 photo = st.container(border=False)
 photo.image(logo, width= 250)

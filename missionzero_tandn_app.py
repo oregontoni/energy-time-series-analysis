@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image, ImageOps
 
 
-chart_logo = 'green_chart_line.png'
+chart_logo = './streamlit_images/green_chart_line.png'
 energy_over_time = 'energy_generation_2009_to_2023.png'
 energy_comparison = 'energy_gen_2009v2023.png'
 energy_month = 'generation_by_month_09to24.png'
