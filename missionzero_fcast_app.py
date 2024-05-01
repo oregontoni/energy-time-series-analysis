@@ -40,7 +40,7 @@ selected_yr_forecasted_wind_mwh = forecast.loc[str(year_to_forecast)].sum() / 2
 selected_yr_forecasted_wind_twh = selected_yr_forecasted_wind_mwh/1000000
 
 #load .csv of non-wind generation in 2023
-non_wind_data = pd.read_csv('energy_gen_2023_excl_wind.csv')
+non_wind_data = pd.read_csv('./data/energy_gen_2023_excl_wind.csv')
 
 #add wind calculations to dataframe
 non_wind_data.loc[len(non_wind_data)] = ['WIND', selected_yr_forecasted_wind_mwh]
@@ -209,7 +209,7 @@ with col2:
 
 
 #comment * from nuclear power plants*    
-st.markdown("<h4 style='text-align: left;  font-size: 15px; color: gray; font-style: italic; margin-bottom: 30px'>*construction of nuclear power plants require an average of 12 years; energy generation would lag behind hydro, which has a construction requirement of ~3 years, and wind and solar, which have construction requirements of ~1 year</h2>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: left;  font-size: 15px; color: gray; font-style: italic; margin-bottom: 30px'>*construction of nuclear power plants require an average of 12 years; an increase in nuclear energy generation capacity would lag behind hydro, which has a construction requirement of ~3 years, and wind and solar, which have construction requirements of ~1 year</h2>", unsafe_allow_html=True)
 
 #############################################################################################
 st.write(

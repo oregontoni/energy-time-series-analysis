@@ -4,7 +4,7 @@ from PIL import Image, ImageOps
 
 chart_logo = './streamlit_images/green_chart_line.png'
 energy_over_time = './figures/energy_generation_2009_2023.png'
-energy_comparison = './figures/energy_gen_2009v2023.png'
+energy_comparison = './figures/energy_compare_2009v2023_wind.png'
 energy_month = './figures/generation_by_month_09to24.png'
 energy_neg_gen = './figures/y_train_fitx_matching.png'
 energy_wind_fcst = './figures/y_train_fw3_forecasted2049.png'
@@ -38,7 +38,7 @@ photo = st.container(border=False)
 photo.image(energy_neg_gen, width=700)
 
 st.markdown("<h2 style='text-align: left; font-size: 20px; color: black; margin-bottom: 1px; whitespace: nowrap'>How can we model a more realistic scenario for UK energy generation in 2050?</h2>", unsafe_allow_html=True)
-st.markdown("""<p style='color: grey; font-size: 15px;'>Although there was an overall downward slope the historical trends graph, not all energy sources have declined in total energy output since 2009. In contrast to declining Coal energy generation, Wind energy generation (in blue) has grown exponentially.
+st.markdown("""<p style='color: grey; font-size: 15px;'>Although there was an overall downward slope the historical trends graph, not all energy sources have declined in total energy output since 2009. Compared to other renewable energy sources, total Wind energy generation (in blue) has grown significantly from 2009 to 2023.
 </p>""", unsafe_allow_html=True)
 photo = st.container(border=False)
 photo.image(energy_comparison, width=700)
