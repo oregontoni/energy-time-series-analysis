@@ -1,7 +1,10 @@
 import streamlit as st
 from PIL import Image, ImageOps
+from sidebar import navbar
 
 def main():
+
+    navbar()
 
     chart_logo = './streamlit_images/green_chart_line.png'
     energy_over_time = './figures/energy_generation_2009_2023.png'

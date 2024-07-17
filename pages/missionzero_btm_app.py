@@ -1,7 +1,11 @@
 import streamlit as st
 from PIL import Image, ImageOps
+from sidebar import navbar
 
 def main():
+
+    navbar()
+
     st.title("Toni Chan")
     logo = Image.open('./streamlit_images/toni_chan_photo.jpg')
     qr_code_path = './streamlit_images/qr-code.png'

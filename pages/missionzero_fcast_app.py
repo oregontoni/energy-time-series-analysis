@@ -5,8 +5,11 @@ import streamlit as st
 import joblib
 import statsmodels
 from PIL import Image, ImageOps
+from sidebar import navbar
 
 def main():
+
+    navbar()
 
     col1, mid, col2 = st.columns([1,1,20])
     turbine=Image.open('./streamlit_images/green_wind.png')

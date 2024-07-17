@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
-
-from st_pages import Page, show_pages, add_page_title
+from sidebar import navbar
 
 def main():
 
@@ -13,18 +12,10 @@ def main():
 
     st.markdown("<h1 style='color:green;'>MISSION ZERO<h1/>", unsafe_allow_html=True)
 
-
     # Specify what pages should be shown in the sidebar, and what their titles 
     # and icons should be
-    show_pages(
-        [
-            Page("missionzero_app.py", "Introduction", "🇬🇧"),
-            Page("missionzero_tandn_app.py", "Then & Now", "⌛"),
-            Page("missionzero_fcast_app.py", "UK Net Zero 2050", "🌏"),
-            Page("missionzero_btm_app.py", "Connecting", "🔗")
-            
-        ]
-    )
+
+    navbar()
 
     st.write(
     """

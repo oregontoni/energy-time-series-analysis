@@ -13,10 +13,10 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: b632d7a683f97186a4435ee58f7d40735e7a3fcba5ddcc1e3d0cfb6cbf690604
-    osx-64: 2b11a9d76ead471a12d45e3314daa9d9ad298b31dd85c64ec7177c042720b18f
-    win-64: ccb7ae81d2a75abdcf209b76996be59890964ab5b3acefa369938e02c1dc4137
-    osx-arm64: 0ba1965c6247cc88396383ce5ce09e33f1ebec8cafdddf43a5cb21882291b56f
+    linux-64: b32cde0d97a181f367876e79caea321e267bdcf7c0edcfcb8a95f15ffe8ae46f
+    osx-64: 2bbbabffd511f6b965811c2ad7215ef0a2018bee6e1b4569cf87b56edd16e962
+    win-64: 2790176a083854d6253aa5d4d30c572a427ce7b0bfa801180d53ed9041a395f3
+    osx-arm64: d1ce2b38c7593ef6f68ed88b11a016692e9035a93f008d7ca95a84b6db351195
   channels:
   - url: defaults
     used_env_vars: []
