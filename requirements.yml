@@ -7,7 +7,7 @@ name: capstonetc
 channels:
   - defaults
 dependencies:
-  - python=3.8
+  - python=3.8.19
   - numpy
   - pandas
   - jupyterlab
